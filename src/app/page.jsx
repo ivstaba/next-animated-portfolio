@@ -27,5 +27,4 @@ const Homepage = () => {
 		</div>
 	</div>;
 };
-
 export default Homepage;
