@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Brain from "@/components/brain";
+import { motion, useScroll } from "framer-motion";
+import { useRef } from "react";
 
 const AboutPage = () => {
+
+    const conatinerRef = useRef();
+    const {scrollYProgress} = useScroll({container: conatinerRef});
+
     return (
         <motion.div 
 			className="h-full" 
@@ -11,9 +17,9 @@ const AboutPage = () => {
 			transition={{ duration: 1 }}
 		>
             {/* CONTAINER */}
-            <div className="">
+            <div className="h-full overflow-scroll lg:flex" ref={conatinerRef}>
                 {/* TEXT CONTAINER */}
-                <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-48 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64">
+                <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-48 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 lg:pr-0 xl:1/2">
                     {/* BIOGRAPHY CONTAINER */}
                     <div className="flex flex-col gap-12 justify-center">
                         <h1 className="font-bold text-2xl">BIOGRAPHY</h1>
@@ -106,10 +112,113 @@ const AboutPage = () => {
                     </div>
 
                     {/* EXPERIENCE CONTAINER */}
-                    <div className="">EXPERIENCE</div>
+                    <div className="flex flex-col gap-12 justify-center pb-48">
+                        <h1 className="font-bold text-2xl">EXPERIENCE</h1>
+                        {/* EXPERIENCE LIST */}
+                        <div className="">
+                            {/* EXPERIENCE LIST ITEM */}
+                            <div className="flex justify-between h-48">
+                                {/* LEFT */}
+                                <div className="w-1/3">
+                                    {/* JOB TITLE */}
+                                    <div className="bg-white font-semibold p-3 text-blue-500 rounded-b-lg rounded-s-lg w-fit">
+                                        Senior Laravel Developer
+                                    </div>
+                                    {/* JOB DESCRIPTION */}
+                                    <div className="italic p-3 text-sm">
+                                        Working on PHP, MySQL, Laravel, Next.JS and Vue.JS projects
+                                    </div>
+                                    {/* JOB DATE */}
+                                    <div className="p-3 italic text-red-400 text-sm font-semibold">
+                                        2018 - Present
+                                    </div>
+                                    {/* JOB COMPANY */}
+                                    <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                                        Facebook
+                                    </div>
+                                </div>
+                                {/* CENTER */}
+                                <div className="w-1/6 flex justify-center">
+                                    {/* LINE */}
+                                    <div className="w-1 h-full bg-gray-600 rounded relative">
+                                        {/* CIRCLE */}
+                                        <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2"></div>
+                                    </div>
+                                </div>
+                                {/* RIGHT */}
+                                <div className="w-1/3"></div>
+                            </div>
+                            {/* EXPERIENCE LIST ITEM */}
+                            <div className="flex justify-between h-48">
+                                {/* LEFT */}
+                                <div className="w-1/3"></div>
+                                {/* CENTER */}
+                                <div className="w-1/6 flex justify-center">
+                                    {/* LINE */}
+                                    <div className="w-1 h-full bg-gray-600 rounded relative">
+                                        {/* CIRCLE */}
+                                        <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2"></div>
+                                    </div>
+                                </div>
+                                {/* RIGHT */}
+                                <div className="w-1/3">
+                                    {/* JOB TITLE */}
+                                    <div className="bg-white font-semibold p-3 text-blue-500 rounded-b-lg rounded-s-lg w-fit">
+                                        Junior PHP Developer
+                                    </div>
+                                    {/* JOB DESCRIPTION */}
+                                    <div className="italic p-3 text-sm">
+                                        Working on PHP, MySQL, Laravel and JavaScript projects
+                                    </div>
+                                    {/* JOB DATE */}
+                                    <div className="p-3 italic text-red-400 text-sm font-semibold">
+                                        2016 - 2018
+                                    </div>
+                                    {/* JOB COMPANY */}
+                                    <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                                        Facebook
+                                    </div>
+                                </div>
+                            </div>
+                            {/* EXPERIENCE LIST ITEM */}
+                            <div className="flex justify-between h-48">
+                                {/* LEFT */}
+                                <div className="w-1/3">
+                                    {/* JOB TITLE */}
+                                    <div className="bg-white font-semibold p-3 text-blue-500 rounded-b-lg rounded-s-lg w-fit">
+                                        Freelancer
+                                    </div>
+                                    {/* JOB DESCRIPTION */}
+                                    <div className="italic p-3 text-sm">
+                                        Working on PHP, MySQL and Laravel projects
+                                    </div>
+                                    {/* JOB DATE */}
+                                    <div className="p-3 italic text-red-400 text-sm font-semibold">
+                                        2014 - 2016
+                                    </div>
+                                    {/* JOB COMPANY */}
+                                    <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
+                                        Myself
+                                    </div>
+                                </div>
+                                {/* CENTER */}
+                                <div className="w-1/6 flex justify-center">
+                                    {/* LINE */}
+                                    <div className="w-1 h-full bg-gray-600 rounded relative">
+                                        {/* CIRCLE */}
+                                        <div className="absolute w-5 h-5 rounded-full ring-4 ring-red-400 bg-white -left-2"></div>
+                                    </div>
+                                </div>
+                                {/* RIGHT */}
+                                <div className="w-1/3"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {/* SVG CONTAINER */}
-                <div className="hidden"></div>
+                <div className="hidden lg:block lg:w-1/3 sticky top-0 z-30 xl:1/2">
+                    <Brain scrollYProgress={scrollYProgress} />
+                </div>
             </div>
         </motion.div>
     );
