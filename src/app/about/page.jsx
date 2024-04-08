@@ -1,13 +1,20 @@
 "use client";
 
 import Brain from "@/components/brain";
-import { motion, useScroll } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useInView} from "framer-motion";
+import { useRef  } from "react";
 
 const AboutPage = () => {
 
     const conatinerRef = useRef();
     const {scrollYProgress} = useScroll({container: conatinerRef});
+
+    const skillRef = useRef();
+    // const isSkillRefInView = useInView(skillRef, {once: true}, {margin:"-100px"});
+    const isSkillRefInView = useInView(skillRef, {margin:"-100px"});
+
+    const experienceRef = useRef();
+    const isExperienceRefInView = useInView(experienceRef, {margin:"-100px"});
 
     return (
         <motion.div 
@@ -47,8 +54,11 @@ const AboutPage = () => {
                                 />
                             </svg>
                         </div>
-                        {/* SCROLL SVG */}
-                        <svg
+                        {/* BIOGRAPHY SCROLL SVG */}
+                        <motion.svg
+                            initial={{opacity: 0.2, y: 0}}
+                            animate={{opacity: 1, y: "10px"}}
+                            transition={{repeat:Infinity, duration: 3, ease:"easeInOut"}}
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -66,14 +76,24 @@ const AboutPage = () => {
                                 stroke="#000000"
                                 strokeWidth="1"
                             ></path>
-                        </svg>
+                        </motion.svg>
                     </div>
 
                     {/* SKILLS CONTAINER */}
-                    <div className="flex flex-col gap-12 justify-center">
-                        <h1 className="font-bold text-2xl">SKILLS</h1>
+                    <div className="flex flex-col gap-12 justify-center" ref={skillRef}>
+                        <motion.h1 
+                            initial={{x:"-300px"}} 
+                            animate={isSkillRefInView ? {x:0} : {}} 
+                            transition={{delay: 0.2}} 
+                            className="font-bold text-2xl">
+                                SKILLS
+                        </motion.h1>
                         {/* SKILL LIST */}
-                        <div className="flex gap-4 flex-wrap">
+                        <motion.div 
+                            initial={{x:"-300px"}} 
+                            animate={isSkillRefInView ? {x:0} : {}} 
+                            className="flex gap-4 flex-wrap"
+                        >
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">JavaScript</div>
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">PHP</div>
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">Laravel</div> 
@@ -88,9 +108,12 @@ const AboutPage = () => {
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">Tailwind CSS</div>
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">Bootstrap</div>
                             <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">Python</div>
-                        </div>
+                        </motion.div>
                         {/* SKILL SCROLL SVG */}
-                        <svg
+                        <motion.svg
+                            initial={{opacity: 0.2, y: 0}}
+                            animate={{opacity: 1, y: "10px"}}
+                            transition={{repeat:Infinity, duration: 3, ease:"easeInOut"}}
                             viewBox="0 0 24 24"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -108,14 +131,24 @@ const AboutPage = () => {
                                 stroke="#000000"
                                 strokeWidth="1"
                             ></path>
-                        </svg>
+                        </motion.svg>
                     </div>
 
                     {/* EXPERIENCE CONTAINER */}
-                    <div className="flex flex-col gap-12 justify-center pb-48">
-                        <h1 className="font-bold text-2xl">EXPERIENCE</h1>
+                    <div className="flex flex-col gap-12 justify-center pb-48" ref={experienceRef}>
+                        <motion.h1 
+                            initial={{x:"-300px"}} 
+                            animate={isExperienceRefInView ? {x:0} : {}} 
+                            transition={{delay: 0.2}} 
+                            className="font-bold text-2xl">
+                            EXPERIENCE
+                        </motion.h1>
                         {/* EXPERIENCE LIST */}
-                        <div className="">
+                        <motion.div 
+                            className="" 
+                            initial={{x:"-300px"}} 
+                            animate={isExperienceRefInView ? {x:0} : {}}
+                        >
                             {/* EXPERIENCE LIST ITEM */}
                             <div className="flex justify-between h-48">
                                 {/* LEFT */}
@@ -212,7 +245,7 @@ const AboutPage = () => {
                                 {/* RIGHT */}
                                 <div className="w-1/3"></div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
                 {/* SVG CONTAINER */}
